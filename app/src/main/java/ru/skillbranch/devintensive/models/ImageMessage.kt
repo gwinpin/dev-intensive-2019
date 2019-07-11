@@ -7,7 +7,7 @@ class ImageMessage(id: String,
                    chat: Chat,
                    isIncoming: Boolean = false,
                    date: Date = Date(),
-                   image: String?
+                   var image: String?
 ) : BaseMessage(id, from, chat, isIncoming, date) {
     override fun formatMessage(): String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
