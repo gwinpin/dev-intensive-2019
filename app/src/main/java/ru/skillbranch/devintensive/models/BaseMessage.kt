@@ -16,7 +16,7 @@ abstract class BaseMessage(
     companion object AbstractFactory {
         var latId = -1
 
-        fun makeMassage(from: User?,chat: Chat,date: Date = Date(),type: String = "text", payload: Any?): BaseMessage {
+        fun makeMessage(from: User?,chat: Chat,date: Date = Date(),type: String = "text", payload: Any?): BaseMessage {
             latId++
 
             return when (type) {
