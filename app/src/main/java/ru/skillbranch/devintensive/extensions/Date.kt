@@ -13,26 +13,44 @@ enum class TimeUnits {
     SECOND,
     MINUTE,
     HOUR,
-    DAY
+    DAY;
+
+    fun plural(value: Int): String {
+        val absVal = abs(value)
+
+        val triple: Triple<String, String, String> = when (this) {
+            SECOND -> Triple("секунд", "секунды", "секунду")
+            MINUTE -> Triple("минут", "минуты", "минуту")
+            HOUR -> Triple("часов", "часа", "час")
+            DAY -> Triple("дней", "дня", "день")
+        }
+
+        return "$absVal " + when {
+            absVal % 100  in 11..19 -> triple.first
+            absVal % 10  in 2..4 -> triple.second
+            absVal % 10  == 1 -> triple.third
+            else -> triple.first
+        }
+    }
 }
 
-fun TimeUnits.plural(value: Int): String {
-    val absVal = abs(value)
-
-    val triple: Triple<String, String, String> = when (this) {
-        TimeUnits.SECOND -> Triple("секунд", "секунды", "секунду")
-        TimeUnits.MINUTE -> Triple("минут", "минуты", "минуту")
-        TimeUnits.HOUR -> Triple("часов", "часа", "час")
-        TimeUnits.DAY -> Triple("дней", "дня", "день")
-    }
-
-    return "$absVal " + when {
-        absVal % 100  in 11..19 -> triple.first
-        absVal % 10  in 2..4 -> triple.second
-        absVal % 10  == 1 -> triple.third
-        else -> triple.first
-    }
-}
+//fun TimeUnits.plural(value: Int): String {
+//    val absVal = abs(value)
+//
+//    val triple: Triple<String, String, String> = when (this) {
+//        TimeUnits.SECOND -> Triple("секунд", "секунды", "секунду")
+//        TimeUnits.MINUTE -> Triple("минут", "минуты", "минуту")
+//        TimeUnits.HOUR -> Triple("часов", "часа", "час")
+//        TimeUnits.DAY -> Triple("дней", "дня", "день")
+//    }
+//
+//    return "$absVal " + when {
+//        absVal % 100  in 11..19 -> triple.first
+//        absVal % 10  in 2..4 -> triple.second
+//        absVal % 10  == 1 -> triple.third
+//        else -> triple.first
+//    }
+//}
 
 
 fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy"): String {
