@@ -28,7 +28,7 @@ object Utils {
 
 
     fun transliteration(payload: String?, divider: String = " "): String {
-        val parts: List<String>? = payload?.trim()?.split(divider)
+        val parts: List<String>? = payload?.trim()?.split(" ")
 
         var txt = ""
         parts?.forEach { word: String ->
