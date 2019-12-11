@@ -21,8 +21,10 @@ data class User(
         avatar = null
     )
 
-    init {
+    constructor(id: String) : this(id, "John", "Doe")
 
+    init {
+        println("its a live")
     }
 
 
